@@ -4,11 +4,13 @@ class BreweryFinder::CLI
         until input == "exit"
         puts "Find Breweries in all 50 states and DC!"
         puts "Please enter your two-letter state abbreviation (including DC) or your 5 digit zipcode."
-        puts "Type 'exit' at any time to exit."
+        puts "Type 'list' to display your list. Type 'exit' at any time to exit."
         req = nil
         while req == nil do
             input = gets.chomp
             if input == "exit"
+                Brewery.print_breweries
+                puts "\nThank you for using brewery-finder!"
                 exit
             end
             req = validate_zip_or_state(input)
@@ -20,6 +22,7 @@ class BreweryFinder::CLI
             if is_numeric?(input)
                 index = input.to_i - 1
             elsif input == "exit"
+                Brewery.print_breweries
                 exit
             else
                 puts "Please enter a valid input."
@@ -41,7 +44,25 @@ class BreweryFinder::CLI
         puts "#{res['city']}, #{res['state']}"
         puts res["website_url"]
         puts ""
-        puts "To save this brewery to your list, enter 'save'."
+        puts "To save this brewery to your list, enter 'save', to go back type 'back', to return to the first screen press enter, to exit type 'exit'."
+        
+        valid = false
+        while valid == false
+            input = gets.chomp
+            if input == "exit"
+                valid = true
+                exit
+            elsif input == "save"
+                Brewery.new(res["name"], {:street => res["street"], :city => res["city"], :state => res["state"]}, res["website_url"])
+                valid == true
+            elsif input == "" || nil
+                valid = true
+            else
+                puts "please enter valid input"
+            end
+        end
+                
+        
     end
     #uses get_breweries to format and list the breweries for the user
     def list_breweries(req)
