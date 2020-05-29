@@ -1,28 +1,20 @@
 # BreweryFinder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/brewery_finder`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a Ruby CLI app that uses openbrewerydb.org to fetch information about breweries in all 50 states! Users can browse and save breweries to their own list. The app also uses the openstates.org API to validate 2 letter state abbreviation input.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'brewery_finder'
-```
+Clone repository
 
 And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install brewery_finder
-
 ## Usage
 
-TODO: Write usage instructions here
+Run ruby bin/brewery-finder
+
+Follow the instructions in the application, and enjoy!
 
 ## Development
 
